@@ -5,8 +5,31 @@ class Renter
 	private String password;
 	private String name;
 	private String birthday;
-	private String address;
+	private String homeAddress;
 	private String ssn;
+
+	Renter()
+	{
+		
+	}
+	
+	public String GetEmail(){return email;}
+	public void SetEmail(String e){email = e;}
+
+	public String GetPassword(){return password;}
+	public void SetPassword(String pass){password = pass;}
+	
+	public String GetName(){return name;}
+	public void SetName(String n){name = n;}
+	
+	public String GetBirthday(){return birthday;}
+	public void SetBirthday(String bday){birthday = bday;}
+	
+	public String GetAddress(){return homeAddress;}
+	public void SetAddress(String address){homeAddress = address;}
+	
+	public String GetSSN(){return ssn;}
+	public void SetSSN(String ss){ssn = ss;}
 
 	public void RegisterRenter() 
 	{

@@ -6,9 +6,32 @@ class Juicer
 	private String password;
 	private String name;
 	private String birthday;
-	private String physicalAddress;
+	private String homeAddress;
 	private String ssn;
 	private Task currentTask;
+	
+	Juicer()
+	{
+		
+	}
+	
+	public String GetEmail(){return email;}
+	public void SetEmail(String e){email = e;}
+
+	public String GetPassword(){return password;}
+	public void SetPassword(String pass){password = pass;}
+	
+	public String GetName(){return name;}
+	public void SetName(String n){name = n;}
+	
+	public String GetBirthday(){return birthday;}
+	public void SetBirthday(String bday){birthday = bday;}
+	
+	public String GetAddress(){return homeAddress;}
+	public void SetAddress(String address){homeAddress = address;}
+	
+	public String GetSSN(){return ssn;}
+	public void SetSSN(String ss){ssn = ss;}
 	
 	public void RegisterJuicer()
 	{
@@ -57,24 +80,61 @@ class Balance
 {
 	private double amount;
 	
-	public void AddValue( double ammount )
+	Balance()
 	{
-		
+		amount = 0.0;
+	}
+	private double GetBalance(){return amount;}
+	private void SetBalance( double bal ){amount = bal;}
+	
+	public void AddValue( double add_amount )
+	{
+		amount = amount + add_amount;
 	}
 	
 	public void Transfer( TransferAccount account )
 	{
-			
+		account.Transfer(amount);
+		SetBalance( 0 );
 	}
 }
 
 
 class TransferAccount
 {
-	private double name;
-	private double type;
-	private double bankName;
-	private double paymentAddress;
-	private double accountNumber;
-	private double rountingNumber;
+	private String name;
+	private String accountType;
+	private String bankName;
+	private String paymentAddress;
+	private String accountNumber;
+	private String routingNumber;
+	
+	TransferAccount()
+	{
+		
+	}
+	
+	public String GetName(){return name;}
+	public void SetName(String n){name = n;}
+
+	public String GetType(){return accountType;}
+	public void SetType(String type){accountType = type;}
+
+	public String GetBankName(){return bankName;}
+	public void SetBankName(String name){bankName = name;}
+
+	public String GetPaymentAddress(){return paymentAddress;}
+	public void SetPaymentAddress(String address){paymentAddress = address;}
+	
+	public String GetAccountNumber(){return accountNumber;}
+	public void SetAccountNumber(String accountNum){accountNumber = accountNum;}
+	
+	public String GetRoutingNumber(){return routingNumber;}
+	public void SetRoutingNumber(String routingNum){routingNumber = routingNum;}
+	
+	public void Transfer( double amount )
+	{
+		String str = String.format("%f",amount);
+		System.out.println("Balance Transfered. $"+str);	
+	}
 }
