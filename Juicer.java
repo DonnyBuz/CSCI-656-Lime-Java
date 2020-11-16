@@ -9,6 +9,7 @@ class Juicer
 	private String homeAddress;
 	private String ssn;
 	private Task currentTask;
+	private Balance balance;
 	
 	Juicer()
 	{
@@ -32,6 +33,8 @@ class Juicer
 	
 	public String GetSSN(){return ssn;}
 	public void SetSSN(String ss){ssn = ss;}
+
+	public Balance GetBalance(){return balance;}
 	
 	public void RegisterJuicer()
 	{
