@@ -1,14 +1,32 @@
 
-class PaymentMethod
+interface PaymentMethod
+{
+	public String GetName();
+	public void SetName(String name);	
+	
+	public String GetAccountType();
+	public void SetAccountType(String type);
+	
+	public String GetBankName();
+	public void SetBankName(String name);
+	
+	public String GetPaymentAddress();
+	public void SetPaymentAddress(String address);
+}
+
+class Impl_PaymentMethod
 {
 	private String methodName;
 	private String accountType;
 	private String bankName;
 	private String paymentAddress;
 	
-	PaymentMethod()
+	Impl_PaymentMethod(String name, String type, String bank, String address)
 	{
-		
+		methodName = name;
+		accountType = type;
+		bankName = bank;
+		paymentAddress = address;
 	}
 	
 	public String GetName(){return methodName;}
@@ -24,14 +42,16 @@ class PaymentMethod
 	public void SetPaymentAddress(String address){paymentAddress = address;}
 }
 
-class BankAccount extends PaymentMethod
+class BankAccount extends Impl_PaymentMethod
 {
 	private String accountNumber;
 	private String routingNumber;
 
-	BankAccount()
+	BankAccount(String name, String type, String bank, String address, String accountNum, String routingNum)
 	{
-		
+		super(name,type,bank,address);
+		accountNumber = accountNum;
+		routingNumber = routingNum;
 	}
 
 	public String GetAccountNumber(){return accountNumber;}
@@ -46,15 +66,18 @@ class BankAccount extends PaymentMethod
 	}
 }
 
-class CreditCard extends PaymentMethod
+class CreditCard extends Impl_PaymentMethod
 {
 	private String cardNumber;
 	private String expiration;
 	private String CCV;
 
-	CreditCard()
+	CreditCard(String name, String type, String bank, String address, String cardNum, String exp, String ccvCode)
 	{
-		
+		super(name,type,bank,address);
+		cardNumber = cardNum;
+		expiration = exp;
+		CCV = ccvCode;		
 	}
 	
 	public String GetCardNumber(){return cardNumber;}

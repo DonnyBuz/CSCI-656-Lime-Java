@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 class Renter
 {
@@ -7,10 +8,12 @@ class Renter
 	private String birthday;
 	private String homeAddress;
 	private String ssn;
+	private ArrayList<Impl_PaymentMethod> paymentMethods;
+	
 
 	Renter()
 	{
-		
+		paymentMethods = new ArrayList<Impl_PaymentMethod>();
 	}
 	
 	public String GetEmail(){return email;}
@@ -38,7 +41,7 @@ class Renter
 	
 	public void Login()
 	{
-			
+	
 	}
 	
 	public void Logout() 
@@ -48,7 +51,7 @@ class Renter
 	
 	public void UpdateAccount() 
 	{
-			
+		
 	}
 	
 	public Scooter[] ViewAvailableScooters() 
@@ -59,7 +62,7 @@ class Renter
 	
 	public void ReserveScooter(Scooter s) 
 	{
-		
+
 	}
 	
 	public RentalRecord[] ViewHistory() 
@@ -70,12 +73,23 @@ class Renter
 	
 	public void ViewPaymentMethods() 
 	{
-		
+		if(paymentMethods == null)
+		{
+			System.out.println("No payment Methods.");
+		}
+		else
+		{
+			System.out.println("Yes payment Methods.");
+		}
 	}
 	
-	public void AddPaymentMethod() 
+	public void AddPaymentMethod(String name, String accountType, String bankName, String address) 
 	{
-		
+		if(accountType.equals("CreditCard"))
+		{
+			paymentMethods.add(new CreditCard(name,accountType,bankName,address,"","",""));
+			System.out.println(paymentMethods.get(0).GetName() + " payment method added.");
+		}
 	}
 	
 	public void RemovePaymentMethod() 

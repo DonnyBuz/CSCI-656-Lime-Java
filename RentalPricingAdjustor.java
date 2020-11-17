@@ -7,6 +7,7 @@ class RentalPricingAdjustor
 	
 	RentalPricingAdjustor()
 	{
+		prices = new ArrayList<RegionRentalPrice>();
 		numberRegions = 1;
 		prices.add(new RegionRentalPrice("Default",0.0));
 	}
