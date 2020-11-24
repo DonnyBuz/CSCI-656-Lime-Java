@@ -4,18 +4,26 @@ package edu.cofc.cs656.models;
 
 public class Renter
 {
+	private static int index = 1000;
+	private int renterID;
 	private String email;
 	private String password;
 	private String name;
 	private String birthday;
 	private String homeAddress;
 	private String ssn;
-	//private List<Impl_PaymentMethod> paymentMethods;
+	//private List<PaymentMethod> paymentMethods;
 	
 
-	public Renter()
+	public Renter(String e, String pass, String n, String ss)
 	{
-		//paymentMethods = new List<Impl_PaymentMethod>();
+		renterID = index;
+		email = e;
+		password = pass;
+		name = n;
+		ssn = ss;
+		//paymentMethods = new List<PaymentMethod>();
+		index++;
 	}
 	
 	public String GetEmail(){return email;}
@@ -36,81 +44,5 @@ public class Renter
 	public String GetSSN(){return ssn;}
 	public void SetSSN(String ss){ssn = ss;}
 
-	public void RegisterRenter() 
-	{
-		
-	}
-	
-	public void Login()
-	{
-	
-	}
-	
-	public void Logout() 
-	{
-			
-	}		
-	
-	public void UpdateAccount() 
-	{
-		
-	}
-	
-	//public Scooter[] ViewAvailableScooters() 
-	{
-		//Scooter[] s = new Scooter[2];
-		//return s;	
-	}
-	
-	//public void ReserveScooter(Scooter s) 
-	{
 
-	}
-	
-	//public RentalRecord[] ViewHistory() 
-	{
-		//RentalRecord[] r = new RentalRecord[2];
-		//return r;		
-	}
-	
-	public void ViewPaymentMethods() 
-	{
-		//if(paymentMethods == null)
-		{
-			System.out.println("No payment Methods.");
-		}
-		//else
-		{
-			System.out.println("Yes payment Methods.");
-		}
-	}
-	
-	public void AddPaymentMethod(String name, String accountType, String bankName, String address) 
-	{
-		if(accountType.equals("CreditCard"))
-		{
-	//		paymentMethods.add(new CreditCard(name,accountType,bankName,address,"","",""));
-	//		System.out.println(paymentMethods.get(0).GetName() + " payment method added.");
-		}
-	}
-	
-	public void RemovePaymentMethod() 
-	{
-		
-	}
-	
-	public void ViewActiveSubscription() 
-	{
-		
-	}
-	
-	public void AddSubscription() 
-	{
-		
-	}
-	
-	public void CancelSubscription() 
-	{
-		
-	}
 }
