@@ -1,6 +1,6 @@
 package edu.cofc.cs656.models;
 
-class Subscription
+public class Subscription
 {
 	private String subscriptionType;
 	private double subscriptionCost;

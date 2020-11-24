@@ -1,6 +1,6 @@
 package edu.cofc.cs656.models;
 
-class CreditCard extends PaymentMethod
+public class CreditCard extends PaymentMethod
 {
 	private String cardNumber;
 	private String expiration;

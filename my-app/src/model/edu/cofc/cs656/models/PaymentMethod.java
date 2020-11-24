@@ -1,6 +1,6 @@
 package edu.cofc.cs656.models;
 
-class PaymentMethod
+public class PaymentMethod
 {
 	private String methodName;
 	private String accountType;
@@ -26,4 +26,9 @@ class PaymentMethod
 	
 	public String GetPaymentAddress(){return paymentAddress;}
 	public void SetPaymentAddress(String address){paymentAddress = address;}
+	
+	public String toString()
+	{
+		return "[ name = " + methodName + "; accountType = " + accountType + "; bankName = " + bankName + "; paymentAddress = " + paymentAddress + "]";
+	}
 }
