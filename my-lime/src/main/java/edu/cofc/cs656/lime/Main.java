@@ -23,12 +23,18 @@ import model.edu.cofc.cs656.models.RegionRentalPrice;
 import model.edu.cofc.cs656.models.RepairRequest;
 import model.edu.cofc.cs656.models.RepairShop;
 
+import model.edu.cofc.cs656.models.CreditCard;
+import model.edu.cofc.cs656.models.BankAccount;
+import model.edu.cofc.cs656.models.Subscription;
+
+
+
 import business.edu.cofc.cs656.services.RentalPricingServices;
 import business.edu.cofc.cs656.services.RepairServices;
 import business.edu.cofc.cs656.services.ScooterServices;
 import business.edu.cofc.cs656.services.TaskServices;
 import business.edu.cofc.cs656.services.RentalPricingServices;
-
+import business.edu.cofc.cs656.services.PaymentServices;
 
 /**
  * Main class.
@@ -75,20 +81,24 @@ public class Main {
 	
 	private static void TestCode()
 	{
-	   //initialize services
+	//initialize services
+		System.out.println("\n\nInitialize Services:\n");
     	UserServices userServ = new UserServices();
     	TaskServices taskServ = new TaskServices();
     	RentalPricingServices priceServ = new RentalPricingServices();
     	ScooterServices scooterServ = new ScooterServices(taskServ,priceServ);
     	RepairServices repairServ = new RepairServices();
+		PaymentServices paymentServ = new PaymentServices();
     	
     	System.out.println(userServ.toString());
     	System.out.println(taskServ.toString());
     	System.out.println(priceServ.toString());
     	System.out.println(scooterServ.toString());
     	System.out.println(repairServ.toString());
-    	
+		System.out.println(paymentServ.toString());
+		
     //register accounts
+		System.out.println("\n\nRegister Accounts:\n");
     	Admin admin1 = new Admin("adminAccount@lime.com","P@S5W0RD","Lime Owner","123-45-6789");
     	System.out.println(userServ.RegisterAdmin(admin1));
     	
@@ -106,12 +116,14 @@ public class Main {
     	System.out.println(userServ.RegisterJuicer(juicer2));
     	System.out.println(userServ.RegisterJuicer(juicer3));
     	
-    //login as admin 
+    //login as admin
+		System.out.println("\n\nLogin Admin:\n");
     	Admin admin;
     	admin = userServ.LoginAsAdmin("adminAccount@lime.com", "P@S5W0RD");    
     	System.out.println(userServ.toString());
     	
     	//add scooters
+		System.out.println("\n\nAdd Scooters:\n");
     	Scooter scooter1 = new Scooter("Charleston, SC");
     	Scooter scooter2 = new Scooter("Charleston, SC");
       	Scooter scooter3 = new Scooter("Columbia, SC");
@@ -122,86 +134,111 @@ public class Main {
     	System.out.println(scooterServ.AddScooter(scooter4)); 
     	
     	//add region pricing
+		System.out.println("\n\nSet Region Pricing:\n");
     	System.out.println(priceServ.AddRegionRentalPrice("Charleston, SC", 25.5));
     	System.out.println(priceServ.AddRegionRentalPrice("Columbia, SC", 10.0));
     	System.out.println(priceServ.AddRegionRentalPrice("Charleston, SC", 20.0));
     	System.out.println(priceServ.AddRegionRentalPrice("Charlotte, NC", 15.0));
     	
     	//adjust region pricing
+		System.out.println("\n\nAdjust Region Pricing:\n");
     	System.out.println(priceServ.AdjustAll(0.90));
     	System.out.println(priceServ.GetRegionRentalPrice("Charleston, SC"));
     	System.out.println(priceServ.GetRegionRentalPrice("Charlotte, NC"));
     	System.out.println(priceServ.SetRegionPrice("Charlotte, NC", 10.0));
     	System.out.println(priceServ.GetRegionRentalPrice("Charlotte, NC"));
     	
+		
+		System.out.println("\n\nAdd Repair Shops:\n");
     	System.out.println(repairServ.AddRepairShop("Scooter Repair","RequestRepair@ScooterRepair.com","123 Repair Lane, Charleston SC 29409"));
     	System.out.println(repairServ.AddRepairShop("Mr Fix-it","request@MrFixIt.com","211 Walnut Street, Charleston SC 29407"));
     	System.out.println(repairServ.AddRepairShop("Scooter Repair","RequestRepair@ScooterRepair.com","123 Repair Lane, Charleston SC 29409"));
     	
     //login as renter
+		System.out.println("\n\nLogin as Renter:\n");
     	Renter renter;
     	renter = userServ.LoginAsRenter("mike@gmail.com","wrong password"); 
     	System.out.println(userServ.toString());
     	renter = userServ.LoginAsRenter("mike@gmail.com","12345"); 
     	System.out.println(userServ.toString());
-    	
+		
+		//add payment accounts
+		System.out.println("\n\nAdd payment Accounts:\n");
+    	CreditCard cc = new CreditCard("myCC","BOA","1234 Lane","890348092348","12/19","000");
+		System.out.println(paymentServ.AddPaymentMethod(cc));
+		
+    	BankAccount ba = new BankAccount("myBankAccount","BOA","1234 Lane","123123123334554","023020");
+		System.out.println(paymentServ.AddPaymentMethod(ba));
+		
     	//View rentals
+		System.out.println("\n\nView Rentals:\n");
     	List<Scooter> scooters = scooterServ.ViewScooters();
     	scooters.forEach((temp) -> {System.out.println(temp.toString());});
     	
     	//Rent Scooter
-    	System.out.println(scooterServ.RentScooter(renter.GetUserID(), 1002));
+		System.out.println("\n\nRent Scooter ID 1002:\n");
+    	System.out.println(scooterServ.RentScooter(renter.GetUserID(), 1002,1));
     	scooterServ.GetScooterByID(1002).SetBatteryLevel(50);
     	
     	//View rentals
+		System.out.println("\n\nView Rentals:\n");
     	scooters = scooterServ.ViewScooters();
     	scooters.forEach((temp) -> {System.out.println(temp.toString());}); 
     	
     	System.out.println(scooterServ.CompleteRental(1002));
 
     	//View rentals
+		System.out.println("\n\nView Rentals:\n");
     	scooters = scooterServ.ViewScooters();
     	scooters.forEach((temp) -> {System.out.println(temp.toString());});   
     	
     	//Rent Scooter
-    	System.out.println(scooterServ.RentScooter(renter.GetUserID(), 1000));
-    	scooterServ.GetScooterByID(1000).SetBatteryLevel(10);    	
+		System.out.println("\n\nRent Scooter ID 1000:\n");
+    	System.out.println(scooterServ.RentScooter(renter.GetUserID(), 1000,1));
+    	scooterServ.GetScooterByID(1000).SetBatteryLevel(10); 		
     	System.out.println(scooterServ.CompleteRental(1000));
     	
     	//Rent Scooter
-    	System.out.println(scooterServ.RentScooter(renter.GetUserID(), 1003));
+		System.out.println("\n\nRent Scooter ID 1003:\n");
+    	System.out.println(scooterServ.RentScooter(renter.GetUserID(), 1003,1));
     	scooterServ.GetScooterByID(1003).SetBatteryLevel(10);
     	System.out.println(scooterServ.CompleteRental(1003));      	
 
     	//View rentals
+		System.out.println("\n\nView Rentals:\n");
     	scooters = scooterServ.ViewScooters();
     	scooters.forEach((temp) -> {System.out.println(temp.toString());});      	
     	
     //Login as Juicer
+		System.out.println("\n\nLogin as Juicer:\n");
     	Juicer juicer;
     	juicer = userServ.LoginAsJuicer("wilma@gmail.com","drowssaP"); 
     	System.out.println(userServ.toString());  	
     	
+		System.out.println("\n\nView Tasks:\n");
     	List<Task> tasks = taskServ.ViewAllTasks();
     	tasks.forEach((temp) -> {System.out.println(temp.toString());}); 
     	
+		//Reserve Task
+		System.out.println("\n\nReserve Task:\n");
+		
+		//Release Task
+		System.out.println("\n\nRelease Task:\n");
     
-    	
-        
-        
-
+		System.out.println("\n\nAdd Repair Requests:\n");
     	System.out.println(repairServ.AddRepairRequest(1000,"Battery not charging."));
     	System.out.println(repairServ.AddRepairRequest(1001,"Front wheel does not turn."));
     	System.out.println(repairServ.AddRepairRequest(1003,"Rear wheel does not spin."));
     	
-    	
+    	System.out.println("\n\nView repair requests:\n");
     	List<RepairRequest> repairRequests = repairServ.ViewRepairRequests();
     	repairRequests.forEach((temp) -> {System.out.println(temp.toString());}); 
     	
+		System.out.println("\n\nView repair shops:\n");
     	List<RepairShop> repairShops = repairServ.ViewRepairShops();
     	repairShops.forEach((temp) -> {System.out.println(temp.toString());});
     	
-    	
+    	System.out.println("\n\nEmail shop:\n");
     	//System.out.println(repairService.EmailShop(rsList.get(0),  rrList.get(0));
 	}
 	

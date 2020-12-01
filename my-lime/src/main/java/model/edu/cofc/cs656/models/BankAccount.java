@@ -1,14 +1,14 @@
 package model.edu.cofc.cs656.models;
 
-
-class BankAccount extends PaymentMethod
+public class BankAccount extends PaymentMethod
 {
 	private String accountNumber;
 	private String routingNumber;
 
-	BankAccount(String name, String bank, String address, String accountNum, String routingNum)
+	public BankAccount(String name, String bank, String address, String accountNum, String routingNum)
 	{
-		super(name, "Bank Account",bank,address);
+		super(name,bank,address);
+		accountType = "Bank Account";
 		accountNumber = accountNum;
 		routingNumber = routingNum;
 	}
@@ -18,4 +18,9 @@ class BankAccount extends PaymentMethod
 	
 	public String GetRoutingNumber(){return routingNumber;}
 	public void SetRoutingNumber(String number){routingNumber = number;}
+	
+	public String toString()
+	{
+		return "{\"id\"=\""+String.valueOf(id)+",\"methodName\"=\""+methodName+"\",\"accountType\"=\""+accountType+"\",\"bankName\"=\""+bankName+"\",\"paymentAddress\"=\""+paymentAddress+"\",\"userID\"=\""+String.valueOf(userID)+"\",\"accountNumber\"=\""+accountNumber+"\",\"routingNumber\"=\""+routingNumber+"\"}";
+	}
 }

@@ -6,9 +6,10 @@ public class CreditCard extends PaymentMethod
 	private String expiration;
 	private String CCV;
 
-	CreditCard(String name, String bank, String address, String cardNum, String exp, String ccvCode)
+	public CreditCard(String name, String bank, String address, String cardNum, String exp, String ccvCode)
 	{
-		super(name,"Credit Card",bank,address);
+		super(name,bank,address);
+		accountType = "Credit Card";
 		cardNumber = cardNum;
 		expiration = exp;
 		CCV = ccvCode;		
@@ -22,4 +23,18 @@ public class CreditCard extends PaymentMethod
 	
 	public String GetCCV(){return CCV;}
 	public void SetCCV(String ccv){CCV = ccv;}
+	
+	public String toString()
+	{
+		return "{\"id\"=\""+String.valueOf(id)
+		+",\"methodName\"=\""+methodName
+		+"\",\"accountType\"=\""+accountType
+		+"\",\"bankName\"=\""+bankName
+		+"\",\"paymentAddress\"=\""+paymentAddress
+		+"\",\"userID\"=\""+String.valueOf(userID)
+		+"\",\"cardNumber\"=\""+cardNumber
+		+"\",\"expiration\"=\""+expiration
+		+"\",\"CCV\"=\""+CCV
+		+"\"}";
+	}
 }

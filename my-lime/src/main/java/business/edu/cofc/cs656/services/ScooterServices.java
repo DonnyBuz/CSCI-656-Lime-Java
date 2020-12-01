@@ -37,7 +37,7 @@ public class ScooterServices
 		return scooters;
 	}	
 
-	public String RentScooter(int renterID, int scooterID) 
+	public String RentScooter(int renterID, int scooterID, int paymentID) 
 	{
 		Scooter scooter = GetScooterByID(scooterID);
 		if(scooter.IsAvailable())
@@ -76,10 +76,15 @@ public class ScooterServices
 		
 	}
 
-	public void AddReview(RenterReview review) 
+	public void AddReview(RenterReview review)
 	{
-		
+		reviews.add(review);
 	}
+	
+	public List<RenterReview> ViewReviews()
+	{
+		return reviews;
+	}		
 	
 	public String toString()
 	{
