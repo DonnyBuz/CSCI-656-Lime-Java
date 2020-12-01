@@ -1,5 +1,6 @@
 package model.edu.cofc.cs656.models;
 
+
 public class User
 {
 	private static int index = 1000;
@@ -44,6 +45,6 @@ public class User
 	
 	public String toString()
 	{
-		return "[userID = " + String.valueOf(userID) + ", email = " + email + ", password = xxxxxxxxxx, name = " + name + ", birthday = " + birthday + ", homeAddress = " + homeAddress + ", ssn = xxx-xx-xxxx]";
+		return "{\"userID\":\""+String.valueOf(userID)+"\",\"email\":\""+email+"\",\"password\":\"xxxxxxxxxx\",\"name\":\""+name+"\",\"birthday\":\""+birthday+"\",\"homeAddress\":\""+homeAddress+"\",\"ssn\":\"xxx-xx-xxxx\"}";
 	}
 }
